@@ -3,7 +3,7 @@ name: Deploy on push to master
 on:
   push:
     branches:
-      - erdeepak
+      - main
 
 jobs:
   deploy:
