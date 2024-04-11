@@ -1,0 +1,38 @@
+name: Deploy on push to master
+
+on:
+  push:
+    branches:
+      - erdeepak
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+        
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: List build output
+      run: ls -R build/
+      
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: techstudyhub.epizy.com
+        username: epiz_31099654
+        password: Testftp2024
+        server-dir: '/public_html/'
+        local-dir: './build/'
+        port: 21
+        protocol: ftps
