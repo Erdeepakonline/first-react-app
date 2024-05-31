@@ -29,9 +29,9 @@ jobs:
     - name: Deploy to FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ftpupload.net
-        username: epiz_31099654
-        password: Testftp2024
+        server: ${{secret.DEPLOY_SERVER}}
+        username: ${{secret.DEPLOY_USERNAME}}
+        password: ${{secret.DEPLOY_PASS}}
         server-dir: '/public_html/'
         local-dir: './build/'
         port: 21
